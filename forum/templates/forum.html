@@ -1,3 +1,4 @@
+{% load forum_extras %}
 <html>
     <body>
 	<a href="/forum">forum</a>
@@ -26,7 +27,7 @@
         <ul>
             <li>
 		    <b>[{{ message.time }}] </b>
-		<font color="green">
+		    <font color={{ message.author|color_from_name }}>
 		    <b>{{ message.author }}:</b>
 		</font>
                 {{ message.text }}
