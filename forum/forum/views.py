@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.contrib import auth
 
 from main.models import Message
+import datetime
 
 def register(request):
     if request.method == 'POST':
@@ -47,6 +48,12 @@ def logout(request):
     return HttpResponseRedirect("/forum")
 
 def forum(request):
+    if request.method == 'POST':
+        text = request.POST.get('text', '')
+        author = 'anon'
+        if request.user.is_authenticated():
+            author = request.user.username 
+        Message.objects.create(text=text, author=author, time=datetime.datetime.now())
     messages = Message.objects.all()
     return render(request, 'forum.html', {'messages': messages})
 

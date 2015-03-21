@@ -15,10 +15,21 @@
             <p>You are anonymous.</p>
         {% endif %}
 
+
+	<form action="" method="post">
+	    <label for="text">Message:</label>
+	    <input type="text" name="text" value="" id="text">
+	    <input type="submit" value="Send" />
+	</form>
+
         {% for message in messages %}
         <ul>
             <li>
-                {{ message.text|upper }}
+		    <b>[{{ message.time }}] </b>
+		<font color="green">
+		    <b>{{ message.author }}:</b>
+		</font>
+                {{ message.text }}
             </li>
         </ul>
         {% endfor %}
